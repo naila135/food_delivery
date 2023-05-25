@@ -1,0 +1,25 @@
+link(rel="stylesheet", href="/css/navbar.css")
+script.
+  window.addEventListener('scroll', function() {
+    var navbar = document.querySelector('.navbar');
+    var shoping_cart = document.querySelector('.cart-icon');
+    if (window.scrollY >= 200) {
+      navbar.classList.add('hidden');
+      shoping_cart.classList.remove('hidden');
+    } else {
+      navbar.classList.remove('hidden');
+      shoping_cart.classList.add('hidden');
+    }
+  })
+
+
+nav
+    div.navbar
+        a.logo(href="#")
+            img(src="/images/logo.svg")
+        a.item.container(href="#")
+            img(src="/images/phone.svg" width="20" height="20")
+            p 0987455123
+        a.item(href="/cart") SHOPING CART
+        a.item(href="#cards") SHOP ONLINE
+

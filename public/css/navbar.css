@@ -1,0 +1,53 @@
+.navbar {
+    font-size:14;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    transition: top 0.5s ease-in-out;
+  }
+  
+  .navbar a {
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    text-align: center;
+    padding: 5px 16px;
+    margin-right: 50px;
+    text-decoration: none;
+    margin-top: 30px;
+  }
+  .navbar .item{
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 3px;
+  }
+  .navbar .logo{
+    float: left;
+    margin-left: 50px;
+  }
+.container{
+    display: flex;
+    align-items: center;
+}
+.container p{
+    margin-left: 5px; 
+}
+.hidden {
+  display: none;
+}
+.cart-icon {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 999;
+  color: white;
+}
+
+.cart-icon-image {
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,78 @@
+html
+  head
+    meta(charset="UTF-8")
+    title Cart
+    link(rel="stylesheet", href="/css/cart.css")
+    script.
+      function applyCoupon() {
+        var couponInput = document.getElementById('coupon');
+        var couponValue = couponInput.value;
+
+
+        fetch('/apply-coupon', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ coupon: couponValue })
+        })
+          .then(response => response.json())
+          .then(data => {
+            var totalElement = document.getElementById('totalAmount');
+            totalElement.textContent = data.totalAmount;
+
+          })
+          .catch(error => {
+            console.error('Error applying coupon:', error);
+          });
+      }
+  body
+    div.back-button
+      a.label(href="/") back
+    div.container
+      div.left-section
+        h2 Your shopping cart
+
+        if cartItems && cartItems.length > 0
+          table.styled-table
+            thead
+              tr
+                th Product
+                th Price
+                th Restaurant
+            tbody
+              each item in cartItems
+                tr
+                  td #{item.title}
+                  td #{item.price}
+                  td #{item.type}
+        else
+          table.styled-table
+            thead
+              tr
+                th Product
+                th Price
+                th Restaurant
+            tbody
+              tr
+                td empty
+                td empty
+                td empty
+        p.total Total: 
+          span#totalAmount #{totalAmount} $
+        p#couponMessage(style="color: green; margin-top: 10px;")
+      div.right-section
+        h2 Shipping details
+        form(action="/submit", method="post")
+          .form-field
+            label(for="fullname") Name:
+            input(type="text", id="fullname", name="fullname" required)
+          .form-field
+            label(for="address") Address:
+            input(type="text", id="address", name="address" required)
+          .form-field
+            label(for="coupon") Coupon:
+            input(type="text", id="coupon", name="coupon")
+            button(type="button", onclick="applyCoupon()") Try coupon
+          input(type="submit", value="Submit")
+

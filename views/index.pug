@@ -1,0 +1,18 @@
+html
+  head
+    
+    title Delivery
+    block scripts
+      script(src='/jquery.js')
+      link(rel="stylesheet", href="/css/style.css")
+      <link rel="preconnect" href="https://rsms.me/">
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  body
+    include includes/head.pug
+    block content
+        section.main.bigimage 
+            img(src="/images/mainscreen.png", alt="" )
+            <a id="scroll-btn" href="#cards"></a>
+    include includes/couponsstart.pug
+    include includes/cards.pug
+    include includes/foot.pug

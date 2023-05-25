@@ -1,0 +1,24 @@
+html
+  head
+    title Coupons
+    link(rel="stylesheet", href="/css/coupons.css")
+
+  body
+    div.couponcontainer
+      each coupon in coupons
+        .coupon-card
+          h2 #{coupon.title}
+          p Value: #{coupon.value}
+          p Discount: #{coupon.discount}
+          button.btn(onclick=`copyToClipboard('${coupon.value}')`) Copy 
+
+  script.
+    function copyToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Coupon value copied to clipboard!');
+    }

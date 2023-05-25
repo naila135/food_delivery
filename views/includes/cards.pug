@@ -1,0 +1,87 @@
+head
+  link(rel="stylesheet", href="/css/cards.css")
+body
+  h1.catalog Catalog
+  div.buttons-container
+    each type in cardTypes
+      - const buttonId = type.replace(/\s+/g, '-').toLowerCase()
+      button.filter-button(type="button", id=buttonId, data-type=type)= type
+  div.container
+    each card in cards
+      - const cardClass = card.type.replace(/\s+/g, '-').toLowerCase()
+      .card(class=cardClass data-type=card.type)
+        div.product-image 
+          img(src=`/images/${card.title}.png`, alt="Product Image")
+        div.product-details
+          h2.product-title= card.title
+          p.product-price= card.price + '$'
+          p.product-type #{card.type}
+          p.product-description #{card.description}
+        div.buttons
+          button.add-to-cart(type="button") Add to Cart
+  div.cart-icon.hidden#cart-icon
+    img.cart-icon.cart-icon-image(src="/images/cart-icon.svg", alt="Cart Icon")
+
+script.
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('cart-icon').addEventListener('click', function() {
+      window.location.href = '/cart';
+    });
+  });
+  const buttons = document.querySelectorAll('.filter-button');
+  const cards = document.querySelectorAll('.card');
+  const cart = [];
+  
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('isPressed');
+      const pressedType = button.dataset.type;
+
+      cards.forEach((card) => {
+        const cardType = card.dataset.type;
+        if (cardType !== pressedType && pressedType !== 'all') {
+          card.classList.add('hidden');
+        } else {
+          card.classList.remove('hidden');
+        }
+      });
+    });
+  });
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const cardElement = event.target.closest('.card');
+      const cardTitle = cardElement.querySelector('.product-title').textContent;
+      const cardPrice = cardElement.querySelector('.product-price').textContent;
+      const cardType = cardElement.querySelector('.product-type').textContent;
+      
+      const item = {
+        title: cardTitle,
+        price: cardPrice,
+        type: cardType
+      };
+      
+      if (cart.length > 0) {
+        const firstItemType = cart[0].type;
+
+
+        if (cardType !== firstItemType) {
+          showNotification('Нельзя добавлять товары разных типов в одну корзину.');
+          return; 
+        }
+      }
+      
+      cart.push(item);
+
+      console.log('Товар добавлен в корзину:', item);
+      fetch('/add-to-cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cart: cart })
+      })
+        .then(response => response.json())
+        .then(data => console.log('Массив cart сохранен в сессии:', data));
+    });
+  });

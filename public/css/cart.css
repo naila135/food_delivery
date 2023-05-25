@@ -1,0 +1,91 @@
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+  } 
+.container {
+    display: flex;
+    justify-content: space-between; /* Добавлено */
+    width: 800px; /* Задайте ширину, в которой хотите разместить две секции */
+  }
+.right-section{
+    margin: 0 auto;
+    margin-left: 20px;
+}
+.left-section{
+    margin-right: 20px;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #ffffff;
+    color: #000000;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.form-field {
+    margin-bottom: 20px;
+  }
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+input[type="text"],
+input[type="submit"] {
+    padding: 8px;
+    font-size: 14px;
+    height: 40px;
+  }
+
+button {
+    font-size: 14px;
+    height: 40px;
+  }
+  input[type="text"] {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+}
+input[type="submit"] {
+    height: 50px;
+    width: 200px;
+    color: white;
+    border: 2px solid white;
+    background-color: #000000;
+    border-radius: 3px;
+}
+.back-button{
+    margin-right: 50px;
+
+
+}
+.label{
+    color:#ffffff;
+    background-color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 0px 8px 0px 8px;
+    border-radius: 3px;
+}
