@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: '65.109.21.161',
     port: '3306',
-    user: 'root',
-    password: '',
+    user: 'u51_12guc8l87B',
+    password: '67XnsO@WJZKdgk!bU.UNG4+8',
   });
   app.use(session({
     secret: 'some_secret_key',
